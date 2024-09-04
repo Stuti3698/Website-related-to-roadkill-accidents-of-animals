@@ -1,0 +1,208 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#banner{
+    background: url(Background1.jpeg);
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+}
+.navbar{
+    background: black; font-family: calibri; padding-right: 15px; padding-left: 15px ; height: 70px;
+}
+.navdiv{
+    display: flex; align-items: center; justify-content: space-between;
+}
+.logo{
+    height:100px;
+    padding: 0 50px;
+}
+nav ul{
+    float: right;
+    margin-right: 20px;
+    padding: 0 30px;
+}
+nav li{
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 5px;  
+    padding: 0 25px;
+}
+button{
+    background-color: rgb(61, 224, 104); margin-left: 10px; border-radius: 10px; padding: 10px; width: 90px;
+}
+button a{
+    color: white; font-weight: bold; font-size: 15px;
+}
+
+.grid{
+    max-width: 100%;
+    max-height:100%;
+}
+.content{
+    height:200px;
+    white-space: nowrap;
+    text-align: center;
+    font-size:39px;
+    padding-left: 62px;
+    text-align: center;
+} 
+.road-kill{
+    width: 86%;
+    height: 354px;
+    background-color: rgb(242, 226, 199);
+    border: 1px solid black;
+    border-width: 6px;
+    position: absolute;
+    box-sizing: border-box;
+    left:99px;
+    display: grid;
+    align-items: center; 
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 5px;
+}
+.para{
+    position: absolute;
+    right: 455px;
+    width: 200px;
+    height: 45px;
+    white-space: nowrap;
+    font-size:19px;
+    padding-right:340px;
+    text-align: left;
+    width: 80px;
+}
+
+.btn {
+    position: relative;
+    background-color: orange;
+    border: none;
+    font-size: 20px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 180px;
+    height: 60px;
+    text-align: center;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    bottom:30px;
+}
+
+.btn:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+.wildlife_population{
+    width: 86%;
+    height: 354px;
+    background-color: rgb(242, 226, 199);
+    border: 1px solid black;
+    border-width: 6px;
+    position: absolute;
+    box-sizing: border-box;
+    bottom:-820px;
+    left:99px;
+    display: grid;
+    align-items: center; 
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 5px;
+}
+.content_wildlife{
+    height:190px;
+    white-space: nowrap;
+    text-align: center;
+    font-size:39px;
+    padding-left: 190px;
+    text-align: center;
+}
+
+.para_wildlife{
+    position: absolute;
+    right: 455px;
+    width: 200px;
+    height: 45px;
+    white-space: nowrap;
+    font-size:19px;
+    padding-right:790px;
+    text-align: center;
+    width: 80px;
+}   
+
+.pic{
+    padding-left: 96px;
+}
+
+.end{
+    padding-top: 800px;
+}
+
+.btn_wildlife{
+    position: relative;
+    background-color: orange;
+    border: none;
+    font-size: 20px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 180px;
+    height: 60px;
+    left:430px;
+    text-align: center;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    bottom:30px;
+}
+
+.btn_wildlife:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.button_wildlife:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+.end{
+    padding-left: 100px;
+    font-size: 25px;
+    background-color:lemonchiffon;
+}
+
+.end p{
+    font-size: 20px;
+}
+hr.line {
+    border: 2px solid black;
+}

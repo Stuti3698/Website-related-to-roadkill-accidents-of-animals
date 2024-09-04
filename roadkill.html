@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>RoadKll Statistics</title>
+    <style type="text/css">
+      body{
+        background: linear-gradient(135deg, #abe0ffcd 40%, rgba(215, 166, 255, 0.866));
+        }
+        .button-spacing{
+            margin-right: 20px;
+        }
+      .chartBox {
+        width: 700px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chartBox">
+      <canvas id="myChart"></canvas>
+    </div>
+    <input type="file" id="uploadfile" accept=".csv" />
+    <button id="uploadconfirm">Upload</button>
+    <hr />
+
+    <button class="button-spacing" onclick="updateChart('Fine_TotalAcc')">Fine_TotalAcc</button>
+    <button class="button-spacing" onclick="updateChart('Fine_PersonsKilled')">Fine_PersonsKilled</button><br /><br>
+    <button class="button-spacing" onclick="updateChart('Mist_TotalAcc')">Mist_TotalAcc</button>
+    <button class="button-spacing" onclick="updateChart('Mist_PersonsKilled')">Mist_PersonsKilled</button><br /><br>
+    <button class="button-spacing" onclick="updateChart('Cloudy_TotalAcc')">Cloudy_TotalAcc</button>
+    <button class="button-spacing" onclick="updateChart('Cloudy_PersonsKilled')">Cloudy_PersonsKilled</button><br /><br>
+    <button class="button-spacing" onclick="updateChart('LightRain_TotalAcc')">LightRain_TotalAcc</button>
+    <button class="button-spacing" onclick="updateChart('LightRain_PersonsKilled')">LightRain_PersonsKilled</button><br /><br>
+    <button class="button-spacing" onclick="updateChart('HeavyRain_TotalAcc')">HeavyRain_TotalAcc</button>
+    <button class="button-spacing" onclick="updateChart('HeavyRain_PersonsKilled')">HeavyRain_PersonsKilled</button><br /><br>
+    <button class="button-spacing" onclick="updateChart('Flooding_TotalAcc')">Flooding_TotalAcc</button>
+    <button class="button-spacing" onclick="updateChart('Flooding_PersonsKilled')">Flooding_PersonsKilled</button><br /><br>
+    <button class="button-spacing" onclick="updateChart('Hail_TotalAcc')">Hail_TotalAcc</button>
+    <button class="button-spacing" onclick="updateChart('Hail_PersonsKilled')">Hail_PersonsKilled</button><br /><br>
+    <button class="button-spacing" onclick="updateChart('Snow_TotalAcc')">Snow_TotalAcc</button>
+    <button class="button-spacing" onclick="updateChart('Snow_PersonsKilled')">Snow_PersonsKilled</button><br /><br>
+    <button class="button-spacing" onclick="updateChart('StrongWind_TotalAcc')">StrongWind_TotalAcc</button>
+    <button class="button-spacing" onclick="updateChart('StrongWind_PersonsKilled')">StrongWind_PersonsKilled</button><br /><br>
+    <button class="button-spacing" onclick="updateChart('DustStorm_TotalAcc')">DustStorm_TotalAcc</button>
+    <button class="button-spacing" onclick="updateChart('DustStorm_PersonsKilled')">DustStorm_PersonsKilled</button><br />
+
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const Fine_TotalAcc = [];
+      const Fine_PersonsKilled = [];
+      const Mist_TotalAcc = [];
+      const Mist_PersonsKilled = [];
+      const Cloudy_TotalAcc = [];
+      const Cloudy_PersonsKilled = [];
+      const LightRain_TotalAcc = [];
+      const LightRain_PersonsKilled = [];
+      const HeavyRain_TotalAcc = [];
+      const HeavyRain_PersonsKilled = [];
+      const Flooding_TotalAcc = [];
+      const Flooding_PersonsKilled = [];
+      const Hail_TotalAcc = [];
+      const Hail_PersonsKilled = [];
+      const Snow_TotalAcc = [];
+      const Snow_PersonsKilled = [];
+      const StrongWind_TotalAcc = [];
+      const StrongWind_PersonsKilled = [];
+      const DustStorm_TotalAcc = [];
+      const DustStorm_PersonsKilled = [];
+
+      let selectedData = [];
+
+      function updateChart(dataKey) {
+        selectedData = eval(dataKey);
+        updateChartDataset();
+      }
+
+      function updateChart(label) {
+        if (label === "Fine_TotalAcc"){
+            myChart.data.datasets[0].data = Fine_PersonsKilled;
+        }
+        if (label === "Fine_PersonsKilled"){
+            myChart.data.datasets[0].data = Fine_TotalAcc;
+        }
+        if (label === "Mist_TotalAcc"){
+            myChart.data.datasets[0].data = Mist_TotalAcc;
+        }
+        if (label === "Mist_PersonsKilled"){
+            myChart.data.datasets[0].data = Mist_TotalAcc;
+        }
+        if (label === "Cloudy_TotalAcc"){
+            myChart.data.datasets[0].data = Cloudy_TotalAcc;
+        }
+        if (label === "Cloudy_PersonsKilled"){
+            myChart.data.datasets[0].data = Cloudy_PersonsKilled;
+        }
+        if (label === "LightRain_TotalAcc"){
+            myChart.data.datasets[0].data = LightRain_TotalAcc;
+        }
+        if (label === "LightRain_PersonsKilled"){
+            myChart.data.datasets[0].data = LightRain_PersonsKilled;
+        }
+        if (label === "HeavyRain_TotalAcc"){
+            myChart.data.datasets[0].data = HeavyRain_TotalAcc;
+        }
+        if (label === "HeavyRain_PersonsKilled"){
+            myChart.data.datasets[0].data = HeavyRain_PersonsKilled;
+        }
+        if (label === "Flooding_TotalAcc"){
+            myChart.data.datasets[0].data = Flooding_TotalAcc;
+        }
+        if (label === "Flooding_PersonsKilled"){
+            myChart.data.datasets[0].data = Flooding_PersonsKilled;
+        }
+        if (label === "Hail_TotalAcc"){
+            myChart.data.datasets[0].data = Hail_TotalAcc;
+        }
+        if (label === "Hail_PersonsKilled"){
+            myChart.data.datasets[0].data = Hail_PersonsKilled;
+        }
+        if (label === "Snow_TotalAcc"){
+            myChart.data.datasets[0].data = Snow_TotalAcc;
+        }
+        if (label === "Snow_PersonsKilled"){
+            myChart.data.datasets[0].data = Snow_PersonsKilled;
+        }
+        if (label === "StrongWind_TotalAcc"){
+            myChart.data.datasets[0].data = StrongWind_TotalAcc;
+        }
+        if (label === "StrongWind_PersonsKilled"){
+            myChart.data.datasets[0].data = StrongWind_PersonsKilled;
+        }
+        if (label === "DustStorm_TotalAcc"){
+            myChart.data.datasets[0].data = Cloudy_PersonsKilled;
+        }
+        if (label === "DustStorm_PersonsKilled"){
+            myChart.data.datasets[0].data = Cloudy_PersonsKilled;
+        }
+        myChart.update();
+      }
+
+      const uploadButton = document.getElementById('uploadconfirm');
+      uploadButton.addEventListener('click', handleUpload);
+
+      function handleUpload() {
+        const fileInput = document.getElementById('uploadfile');
+        const file = fileInput.files[0];
+        Papa.parse(file, {
+          header: true,
+          complete: function (results) {
+            const data = results.data;
+            for (let i = 0; i < data.length; i++) {
+              const record = data[i];
+              Fine_TotalAcc.push(record.Fine_TotalAcc);
+              Fine_PersonsKilled.push(record.Fine_PersonsKilled);
+              Mist_TotalAcc.push(record.Mist_TotalAcc);
+              Mist_PersonsKilled.push(record.Mist_PersonsKilled);
+              Cloudy_TotalAcc.push(record.Cloudy_TotalAcc);
+              Cloudy_PersonsKilled.push(record.Cloudy_PersonsKilled);
+              LightRain_TotalAcc.push(record.LightRain_TotalAcc);
+              LightRain_PersonsKilled.push(record.LightRain_PersonsKilled);
+              HeavyRain_TotalAcc.push(record.HeavyRain_TotalAcc);
+              HeavyRain_PersonsKilled.push(record.HeavyRain_PersonsKilled);
+              Flooding_TotalAcc.push(record.Flooding_TotalAcc);
+              Flooding_PersonsKilled.push(record.Flooding_PersonsKilled);
+              Hail_TotalAcc.push(record.Hail_TotalAcc);
+              Hail_PersonsKilled.push(record.Hail_PersonsKilled);
+              Snow_TotalAcc.push(record.Snow_TotalAcc);
+              Snow_PersonsKilled.push(record.Snow_PersonsKilled);
+              StrongWind_TotalAcc.push(record.StrongWind_TotalAcc);
+              StrongWind_PersonsKilled.push(record.StrongWind_PersonsKilled);
+              DustStorm_TotalAcc.push(record.DustStorm_TotalAcc);
+              DustStorm_PersonsKilled.push(record.DustStorm_PersonsKilled);
+            }
+            selectedData = Fine_TotalAcc;
+            createChart();
+          },
+        });
+      }
+
+      let myChart;
+      function createChart() {
+        const ctx = document.getElementById('myChart').getContext('2d');
+        myChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ['Fine_TotalAcc','Fine_PersonsKilled','Mist_TotalAcc',
+                    	'Mist_PersonsKilled','Cloudy_TotalAcc','Cloudy_PersonsKilled',
+                      'LightRain_TotalAcc','LightRain_PersonsKilled','HeavyRain_TotalAcc',
+                      'HeavyRain_PersonsKilled','Flooding_TotalAcc','Flooding_PersonsKilled',
+                      	'Hail_TotalAcc','Hail_Persons Killed','Snow_TotalAcc',
+                        'Snow_PersonsKilled','StrongWind_TotalAcc','StrongWind_PersonsKilled',
+                        	'DustStorm_TotalAcc','DustStorm_PersonsKilled'], // Add labels here
+            datasets: [
+              {
+                label: 'Selected Data',
+                data:[310121,83727,17090,5886,15770,4687,26799,7578,18107,5814,
+                      	2197,871,1431,551,3127,824,4319,1713,5303,1758],
+                backgroundColor: ["#FF0000",
+                                   "#00FF00",
+                                    "#0000FF", 
+                                    "#FFFF00", 
+                                    "#FF00FF", 
+                                    "#00FFFF", 
+                                    "#FFA500", 
+                                    "#800080", 
+                                    "#008000", 
+                                    "#800000", 
+                                    "#808000", 
+                                    "#008080", 
+                                    "#000080", 
+                                    "#FFC0CB", 
+                                    "#00FF7F", 
+                                    "#DC143C", 
+                                    "#1E90FF", 
+                                    "#FFD700", 
+                                    "#8B0000",
+                                    "#006400"],
+                borderColor: [
+                                    "#FF0000",
+                                   "#00FF00",
+                                    "#0000FF", 
+                                    "#FFFF00", 
+                                    "#FF00FF", 
+                                    "#00FFFF", 
+                                    "#FFA500", 
+                                    "#800080", 
+                                    "#008000", 
+                                    "#800000", 
+                                    "#808000", 
+                                    "#008080", 
+                                    "#000080", 
+                                    "#FFC0CB", 
+                                    "#00FF7F", 
+                                    "#DC143C", 
+                                    "#1E90FF", 
+                                    "#FFD700", 
+                                    "#8B0000",
+                                    "#006400"],
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+        },
+      });
+    }
+  </script>
+</body>
+</html>
